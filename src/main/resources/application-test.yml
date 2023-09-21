@@ -1,0 +1,24 @@
+spring:
+  datasource: # 데이터 베이스 연결 설정
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:test
+    username: sa
+    password:
+
+  jpa: # JPA 설정
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+        dialect: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddlAuto: create
+
+  logging:
+    level:
+      org:
+        hibernate:
+          type:
+            descriptor:
+              sql: trace
