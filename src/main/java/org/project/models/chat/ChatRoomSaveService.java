@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class ChatRoomSaveService {
     private final ChatRoomRepository repository;
 
-    public void save(ChatRoomForm form) {
+    public ChatRoom save(ChatRoomForm form) {
         Long roomNo = form.roomNo();
         ChatRoom room = null;
         if (roomNo != null) {
@@ -24,6 +24,6 @@ public class ChatRoomSaveService {
         room.setMax(form.max());
         repository.saveAndFlush(room);
 
-        //form.roomNo(room.getRoomNo());
+        return room;
     }
 }
