@@ -1,13 +1,13 @@
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Main from './components/Main';
+import StyledButton from "./components/StyledButton";
 
 const App = () => {
+  const handleClick = () => {
+    alert("확인!");
+  };
+
   return (
     <>
-      <Header title="상단 제목1" value={100} />
-      <Main />
-      <Footer />
+     <StyledButton onClick={handleClick}>확인</StyledButton>
     </>
   );
 };
