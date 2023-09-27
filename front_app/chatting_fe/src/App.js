@@ -1,15 +1,17 @@
-import StyledButton from "./components/StyledButton";
+import { Routes, Route } from 'react-router-dom';
+import MainPage from './pages/MainPage';
+import Rooms from './pages/Rooms';
+import Room from './pages/Room';
 
 const App = () => {
-  const handleClick = () => {
-    alert("확인!");
-  };
-
   return (
-    <>
-     <StyledButton onClick={handleClick}>확인</StyledButton>
-    </>
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/rooms" element={<Rooms />} />
+      <Route path="/room" element={<Room />} />
+    </Routes>
   );
+  
 };
 
 export default App;
