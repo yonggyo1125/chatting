@@ -13,7 +13,7 @@ const OuterBox = styled.header`
     padding: 0 15px;
     * {
         color: #fff;
-        font-size: ${props => props.fontsize ? fontSizes[props.fontsize] : '1rem'};
+        font-size: ${props => props.fontSize ? fontSizes[props.fontSize] : '1rem'};
     }
     .btns {
         a {
@@ -35,7 +35,7 @@ const OuterBox = styled.header`
 
 const Header = () => {
     return (
-        <OuterBox fontsize="medium">
+        <OuterBox fontSize="medium">
             <Link to="/"><MdHome /></Link>
             
             <div className="btns">
