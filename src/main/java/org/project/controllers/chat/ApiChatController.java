@@ -35,6 +35,15 @@ public class ApiChatController {
         return ResponseEntity.status(data.getStatus()).body(data);
     }
 
+    @GetMapping("/room/{roomNo}")
+    public JSONData<ChatRoom> roomInfo(@PathVariable Long roomNo) {
+        ChatRoom room = chatRoomInfoService.get(roomNo);
+        JSONData<ChatRoom> data = new JSONData<>();
+        data.setData(room);
+
+        return data;
+    }
+
     @PostMapping("/room")
     public ResponseEntity<JSONData<ChatRoom>> registerRoom(@Valid @RequestBody ChatRoomForm form, Errors errors) {
 

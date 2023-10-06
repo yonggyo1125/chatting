@@ -13,9 +13,8 @@ const App = () => {
     <Routes>
       <Route element={<CommonLayout />}>
         <Route path="/" element={<MainPage />} />
-        <Route path="/room" element={<Rooms />}>
-          <Route path=":roomNo" element={<Room />} />
-        </Route>
+        <Route path="/room" element={<Rooms />} />
+        <Route path="/room/:roomNo" element={<Room />} />
         <Route path="/join" element={<Join />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
