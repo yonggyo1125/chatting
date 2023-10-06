@@ -10,9 +10,17 @@ const Room = () => {
         roomNm : '',
         max : ''
     };
+
+    const initialChatData = {
+        nickNm : '',
+        roomNo : '',
+        message : '',
+    };
+
     const { roomNo } = useParams();
     const [ roomInfo, setRoomInfo ] = useState(initialInfo);
-    
+    const [ chatData, setChatData] = useState(initialChatData);
+
     useEffect(() => {
         webSocket = new WebSocket(process.env.REACT_APP_WS_URL);
         webSocket.onopen = (e) => {
@@ -32,12 +40,21 @@ const Room = () => {
             .catch((err) => console.error(err));
     }, [])
 
+   const handleChange = useCallback((e) => {
+        setChatData({roomNo, nickNm : '', message: e.target.value});
+   }, []);
    
-  
+   const handleClick = useCallback(() => {
+        if (!webSocket) return;
+        webSocket.send(JSON.stringify(chatData));
+   }, []);
 
     return (
         <>  
             {roomInfo && <Title>{roomInfo.roomNm}({roomInfo.max ? `최대${roomInfo.max}명`: '무제한'})</Title>}
+            <ul></ul>
+            <input type="text" onChange={handleChange} />
+            <button type="button" onClick={handleClick}>전송</button>
         </>
     );
 };
