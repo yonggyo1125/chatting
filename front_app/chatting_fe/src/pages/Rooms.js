@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { getRooms } from "../api/chatting";
 import ErrorMessage from '../components/commons/ErrorMessage';
+import Title from '../components/commons/Title';
+import { StyleButton } from "../components/commons/Buttons";
 
 const RoomBox = styled.li`
     box-shadow: 2px 2px 5px #212121;
@@ -14,7 +16,23 @@ const RoomBox = styled.li`
     }
 `;
 
+const FormBox = styled.form`
+    input {
+        display: block;
+        border: 1px solid #d5d5d5;
+        height: 45px;
+        border-radius: 3px;
+        margin-bottom: 5px;
+        width: 100%;
+        text-align: center;
+    }
+    button { 
+        margin-bottom: 20px;
+    }
+`;
+
 const Rooms = () => {
+    const [form, setForm] = useState({roomNm: '', max : 0})
     const [rooms, setRooms] = useState([]);
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(true);
@@ -30,6 +48,16 @@ const Rooms = () => {
                 setMessage("방목록 조회 실패...");
                 setLoading(false);
             });
+    }, []);
+
+    const handleSubmit = useCallback((e) => {
+        e.preventDefault();
+        console.log(form);
+    },[]);
+
+    const handleChange = useCallback((e) => {
+        form[e.target.name] = e.target.value;
+        setForm({ ...form});
     }, []);
 
     let lis = null;
@@ -48,9 +76,17 @@ const Rooms = () => {
     
     return (
         <>
+            <Title>방 등록</Title>
+           <FormBox autoComplete="off" onSubmit={handleSubmit}>
+            <input type="text" name="roomNm" placeholder="방이름 입력" onChange={handleChange} />
+            <input type="number" name="max" placeholder="최대 인원수" onChange={handleChange} />
+            <StyleButton type='submit' width="100%">등록하기</StyleButton>
+           </FormBox>
+
            {message && <ErrorMessage>{message}</ErrorMessage>}
            { loading && rooms.length === 0 && <div>로딩중....</div> }
-           <ul>
+            <Title>방 목록</Title>
+            <ul>
                 {lis}
             </ul>
         </>
