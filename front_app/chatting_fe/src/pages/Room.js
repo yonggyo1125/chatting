@@ -1,7 +1,7 @@
 import { useEffect, useCallback, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import Title from "../components/commons/Title";
-import NickNmForm from "../components/commons/chatting/NickNmForm";
+import NickNmForm from "../components/chatting/NickNmForm";
 import { getRoom, registerMessage } from "../api/chatting";
 
 

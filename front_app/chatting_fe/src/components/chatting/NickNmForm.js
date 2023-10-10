@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
-import ErrorMessage from '../ErrorMessage';
+import ErrorMessage from '../commons/ErrorMessage';
+
 
 const NickNmForm = ({ roomInfo, setRoomInfo }) => {
     const [message, setMessage] = useState('');
