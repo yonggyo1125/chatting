@@ -15,7 +15,7 @@ import java.util.List;
 public class ChatHandler extends TextWebSocketHandler {
 
     private static List<WebSocketSession> sessions = new ArrayList<>();
-
+   
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         sessions.add(session);
