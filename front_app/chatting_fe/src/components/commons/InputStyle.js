@@ -6,4 +6,5 @@ export const TextBox = styled.input`
     border-radius: 3px; 
     padding: 0 10px;
     width: 100%;
+    text-align: ${props => props.align || 'left'};
 `;

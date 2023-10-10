@@ -21,8 +21,8 @@ const NickNmForm = ({ roomInfo, setRoomInfo }) => {
     }, [nickNm]);
     return (
         <>
-            <TextBox type="text" placeholder="닉네임 입력" value={nickNm} onChange={handleChange} />
-            <StyleButton type="button" onClick={handleClick} width='100%'>방 입장하기</StyleButton>
+            <TextBox type="text" align="center" placeholder="닉네임 입력" value={nickNm} onChange={handleChange} />
+            <StyleButton type="button" onClick={handleClick} width='100%' margin="10px 0">방 입장하기</StyleButton>
             {message && <ErrorMessage>{message}</ErrorMessage>}
         </>
     )

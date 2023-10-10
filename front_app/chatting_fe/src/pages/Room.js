@@ -1,9 +1,46 @@
 import { useEffect, useCallback, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
+import styled from 'styled-components';
 import Title from "../components/commons/Title";
 import NickNmForm from "../components/chatting/NickNmForm";
 import { getRoom, registerMessage } from "../api/chatting";
+import { TextBox } from "../components/commons/InputStyle";
+import { FiSend } from 'react-icons/fi';
 
+const ChatBox = styled.ul`
+    position: fixed;
+    top: 110px;
+    left: 15px;
+    width: calc(100% - 30px);
+    height: calc(100% - 225px);
+    background: #ccc;
+    padding: 10px;
+    overflow-y: auto;
+`;
+
+const InputGrp = styled.div`
+    display: flex;
+    position: fixed;
+    bottom: 55px;
+    left: 15px;
+    width: calc(100% - 30px);
+    button {
+        height: 45px;
+        width: 45px;
+        text-align: center;
+        margin-left: 5px;
+        border-color: #000;
+        cursor: pointer;
+        border-radius: 3px;
+        svg {
+            font-size: 1.5rem;
+        }
+    }
+
+    input {
+        flex-grow: 1;
+    }
+`;
 
 let webSocket;
 const Room = () => {
@@ -82,9 +119,13 @@ const Room = () => {
     return (
         <>  
             {roomInfo && <Title>{roomInfo.roomNm}({roomInfo.max ? `최대${roomInfo.max}명`: '무제한'})</Title>}
-            <ul>{lis}</ul>
-            <input type="text" onKeyUp={handleChange} ref={inputEl} />
-            <button type="button" onClick={handleClick} ref={buttonEl}>전송</button>
+            <ChatBox>{lis}</ChatBox>
+            <InputGrp>
+                <TextBox type="text" onKeyUp={handleChange} ref={inputEl} placeholder="메세지 입력..."/>
+                <button type="button" onClick={handleClick} ref={buttonEl}>
+                    <FiSend />
+                </button>
+            </InputGrp>
         </>
     );
 };
