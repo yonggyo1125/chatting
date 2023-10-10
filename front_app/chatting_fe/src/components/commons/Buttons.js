@@ -12,6 +12,10 @@ export const StyleButton = styled.button`
       border-radius: 5px;
     `}
 
+    ${props => props.margin && css`
+      margin: ${props.margin};
+    `}
+
     &:hover {
       background: gray;
     }

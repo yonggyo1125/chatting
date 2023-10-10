@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import ErrorMessage from '../commons/ErrorMessage';
-
+import { TextBox } from '../commons/InputStyle';
+import { StyleButton } from '../commons/Buttons';
 
 const NickNmForm = ({ roomInfo, setRoomInfo }) => {
     const [message, setMessage] = useState('');
@@ -20,8 +21,8 @@ const NickNmForm = ({ roomInfo, setRoomInfo }) => {
     }, [nickNm]);
     return (
         <>
-            <input type="text" placeholder="닉네임 입력" value={nickNm} onChange={handleChange} />
-            <button type="button" onClick={handleClick}>방 입장하기</button>
+            <TextBox type="text" placeholder="닉네임 입력" value={nickNm} onChange={handleChange} />
+            <StyleButton type="button" onClick={handleClick} width='100%'>방 입장하기</StyleButton>
             {message && <ErrorMessage>{message}</ErrorMessage>}
         </>
     )
